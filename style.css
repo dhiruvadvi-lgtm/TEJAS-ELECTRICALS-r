@@ -6,7 +6,7 @@ background:linear-gradient(135deg,#0f172a,#1e40af,#2563eb);
 }
 
 .container{
-background:white;
+background: #F5F5F5;
 max-width:900px;
 margin:auto;
 padding:20px;
@@ -15,9 +15,9 @@ box-shadow:0 0 20px rgba(0,0,0,0.3);
 }
 
 .logo{
-width:120px;
-display:block;
-margin:auto;
+    width:120px;
+    display:block;
+    margin:auto;
 }
 
 h1{
@@ -80,3 +80,103 @@ border-top:2px solid #ddd;
 padding-top:15px;
 }
 .buttons{text-align:center;margin-top:20px}.buttons button{font-size:16px;font-weight:bold;min-width:140px}@media(max-width:600px){body{padding:10px}.container{padding:14px}th,td{padding:8px 5px}}
+
+
+
+.signature{margin-top:30px;text-align:left}
+
+.address{
+  position:absolute;
+  left:25px;
+  bottom:25px;
+  font-size:11px;
+  line-height:1.4;
+  text-align:left;
+}
+
+
+
+/* Compact category-wise material sections */
+#materialCategories{margin-top:20px}
+
+.material-category{
+  background:#fff;
+  border:2px solid #1e40af;
+  border-radius:12px;
+  margin-bottom:12px;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.material-category summary{
+  list-style:none;
+  cursor:pointer;
+  padding:14px 16px;
+  background:#1e40af;
+  color:#fff;
+  font-size:18px;
+  font-weight:bold;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.material-category summary::-webkit-details-marker{display:none}
+
+.material-category summary span{
+  font-size:24px;
+  line-height:1;
+}
+
+.material-category[open] summary span{
+  transform:rotate(45deg);
+  display:inline-block;
+}
+
+.materialTable{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:0;
+}
+
+.materialTable th,.materialTable td{
+  border:1px solid #333;
+  padding:10px;
+  text-align:center;
+}
+
+.materialTable th{
+  background:#f59e0b;
+  color:#fff;
+}
+
+.materialTable td:first-child{text-align:left}
+
+.materialTable input{
+  width:100%;
+  box-sizing:border-box;
+  padding:8px;
+  margin:0;
+}
+
+.add-material-box{
+  text-align:center;
+  margin:15px 0;
+}
+
+.add-material-box button{
+  padding:10px 20px;
+  border:none;
+  border-radius:6px;
+  background:#1e40af;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.add-material-box button:hover{opacity:.9}
+
+@media(max-width:600px){
+  .material-category summary{font-size:16px;padding:13px 12px}
+  .materialTable th,.materialTable td{padding:8px 5px}
+}
