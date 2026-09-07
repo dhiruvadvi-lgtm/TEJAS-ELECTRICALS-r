@@ -84,6 +84,57 @@
 
 </table>
 
+<!-- Add Material Button -->
+<div class="add-material-box">
+  <button type="button" onclick="addMaterial()"> Add Material</button>
+</div>
+
+<script>
+function addMaterial() {
+  const name = prompt("Material ka naam likhiye:");
+  if (name === null) return;
+
+  const material = name.trim();
+
+  if (material === "") {
+    alert("Material ka naam khali nahi ho sakta.");
+    return;
+  }
+
+  const qty = prompt("Quantity likhiye:", "1");
+  if (qty === null) return;
+
+  const table = document.getElementById("materialTable");
+  const row = table.insertRow(-1);
+
+  row.innerHTML = `
+    <td>${escapeHtml(material)}</td>
+    <td><input type="text" value="${escapeHtml(qty)}"></td>
+  `;
+}
+</script>
+
+<style>
+.add-material-box {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.add-material-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #1e40af;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-material-box button:hover {
+  opacity: 0.9;
+}
+</style>
+
 <br>
 
 <button onclick="printBill()"> Print Bill</button>
