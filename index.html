@@ -274,53 +274,32 @@ Tal. &amp; Dist. Dhule - 424301
 </div>
 </div></div><div class="actions"><button onclick="savePDF()">Save PDF</button><button onclick="saveImage()">Save Image</button></div><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script><script>function fileName(){let n=${JSON.stringify(customer)}.trim().replace(/[^a-zA-Z0-9_-]/g,"_");return(n||"Customer")+"_Tejas_Electricals_Bill"}
 function downloadBlob(blob,name){
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;
-  a.download=name;
-  a.setAttribute("download",name);
-  a.type=blob.type;
-  a.target="_blank";
-  a.rel="noopener";
-  a.style.display="none";
-  document.body.appendChild(a);
-
-  try{
-    a.click();
-  }catch(e){
-    // WebView fallback: show the file link so the Android download handler
-    // can take over instead of losing the Blob URL.
-    a.style.display="inline-block";
-    a.textContent="Download "+name;
-    a.style.padding="10px";
-  }
-
-  setTimeout(function(){
-    try{a.remove()}catch(e){}
-    setTimeout(function(){URL.revokeObjectURL(url)},5000);
-  },15000);
+  const reader=new FileReader();
+  reader.onloadend=function(){
+    const dataUrl=reader.result;
+    const a=document.createElement("a");
+    a.href=dataUrl;
+    a.download=name;
+    a.setAttribute("download",name);
+    a.style.display="none";
+    document.body.appendChild(a);
+    try{a.click()}catch(e){}
+    setTimeout(function(){
+      a.remove();
+      if(blob.type==="image/png"){
+        const w=window.open("","_blank");
+        if(w){
+          w.document.open();
+          w.document.write('<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+name.replace(/</g,"&lt;")+'</title></head><body style="margin:0;background:#eee;text-align:center"><img src="'+dataUrl+'" style="max-width:100%;height:auto"><p style="font-family:sans-serif">If Save As appears, cancel it and long-press the image to save it.</p></body></html>');
+          w.document.close();
+        }
+      }
+    },1200);
+  };
+  reader.readAsDataURL(blob);
 }
 async function savePDF(){try{const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff",useCORS:true,allowTaint:true});const {jsPDF}=window.jspdf;const pdf=new jsPDF("p","mm","a4");const w=190;const h=c.height*w/c.width;pdf.addImage(c.toDataURL("image/jpeg",.95),"JPEG",10,10,w,h);const blob=pdf.output("blob");downloadBlob(new Blob([blob],{type:"application/pdf"}),fileName()+".pdf")}catch(e){alert("PDF save nahi ho paya. Please dobara try karein.")}}
-async function saveImage(){
-  try{
-    const c=await html2canvas(document.getElementById("bill"),{
-      scale:2,
-      backgroundColor:"#fff",
-      useCORS:true,
-      allowTaint:true
-    });
-
-    c.toBlob(function(blob){
-      if(!blob){
-        alert("PNG image nahi ban payi. Please dobara try karein.");
-        return;
-      }
-      downloadBlob(blob,fileName()+".png");
-    },"image/png");
-  }catch(e){
-    alert("Image save nahi ho payi. Please dobara try karein.");
-  }
-}</\script></body></html>`);
+async function saveImage(){try{const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff",useCORS:true,allowTaint:true});const data=c.toDataURL("image/png");const byteString=atob(data.split(",")[1]);const ab=new ArrayBuffer(byteString.length);const ia=new Uint8Array(ab);for(let i=0;i<byteString.length;i++)ia[i]=byteString.charCodeAt(i);const blob=new Blob([ab],{type:"image/png"});downloadBlob(blob,fileName()+".png")}catch(e){alert("Image save nahi ho payi. Please dobara try karein.")}}</\script></body></html>`);
 win.document.close();
 }
 function escapeHtml(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#039;");}
