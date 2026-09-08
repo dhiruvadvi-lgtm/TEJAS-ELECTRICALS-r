@@ -281,7 +281,291 @@ function downloadBlob(blob,name){
     a.href=dataUrl;
     a.download=name;
     a.setAttribute("download",name);
-    a.style.display="none";
+    a.style.display="<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tejas Electricals Material List</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+<img src="logo.png" class="logo">
+
+
+
+<h1>
+  <span style="color:#1e40af;">TEJAS</span>
+  <span style="color:#f59e0b;"> ELECTRICALS</span>
+</h1>
+
+<label>Customer Name</label>
+<input type="text" id="customer">
+
+<label>Mobile Number</label>
+<input type="text" id="mobile">
+
+<label>Date</label>
+<input type="date" id="date">
+
+
+<div id="materialCategories">
+
+  <details class="material-category">
+    <summary> Chhat Pipe Fitting Material <span>+</span></summary>
+    <table class="materialTable">
+  
+     <tr><th>Material</th><th>Qty</th></tr>
+     <tr><td>Mms Pvc Pipe 20mm</td><td><input type="text"></td></tr>
+     <tr><td>Mms Pvc Pipe 25mm</td><td><input type="text"></td></tr>
+     <tr><td>Hms Pvc Pipe 20mm</td><td><input type="text"></td></tr>
+     <tr><td>Hms Pvc Pipe 25mm</td><td><input type="text"></td></tr>
+     <tr><td>Mms Pvc Bend 20mm</td><td><input type="text"></td></tr>
+     <tr><td>Mms Pvc Bend 25mm</td><td><input type="text"></td></tr>
+     <tr><td>Hms Pvc Bend 20mm</td><td><input type="text"></td></tr>
+     <tr><td>Hms Pvc Bend 25mm</td><td><input type="text"></td></tr>
+     <tr><td>1 Way Junction Box</td><td><input type="text"></td></tr>
+     <tr><td>2 Way Junction Box</td><td><input type="text"></td></tr>
+     <tr><td>3 Way Junction Box</td><td><input type="text"></td></tr>
+     <tr><td>4 Way Junction Box</td><td><input type="text"></td></tr>
+     <tr><td>6 Modular Fan Box</td><td><input type="text"></td></tr>
+     <tr><td>8 Modular Fan Box</td><td><input type="text"></td></tr>
+     <tr><td>Insulation Tape</td><td><input type="text"></td></tr>
+     <tr><td>Solution Bottel</td><td><input type="text"></td></tr>
+
+    </table>
+  </details>
+
+  <details class="material-category">
+    <summary> Room Jari Pipe Material <span>+</span></summary>
+    <table class="materialTable">
+      <tr><th>Material</th><th>Qty</th></tr>
+      <tr><td>Lms Pvc Pipe 20mm</td><td><input type="text"></td></tr>
+      <tr><td>Lms Pvc Pipe 25mm</td><td><input type="text"></td></tr>
+      <tr><td>Bend 20mm</td><td><input type="text"></td></tr> 
+      <tr><td>Bend 25mm</td><td><input type="text"></td></tr> 
+      <tr><td>1 WayJunction Box</td><td><input type="text"></td></tr>
+      <tr><td>2 WayJunction Box</td><td><input type="text"></td></tr>
+      <tr><td>3 WayJunction Box</td><td><input type="text"></td></tr>
+      <tr><td>4 WayJunction Box</td><td><input type="text"></td></tr>
+      <tr><td>U Pvc Pipe Clam</td><td><input type="text"></td></tr>
+      <tr><td>2 Modular Metal Box</td><td><input type="text"></td></tr>
+      <tr><td>3 Modular Metal Box</td><td><input type="text"></td></tr> 
+      <tr><td>4 Modular Metal Box</td><td><input type="text"></td></tr>
+      <tr><td>6 Modular Metal Box</td><td><input type="text"></td></tr>
+      <tr><td>8 Modular Metal Box</td><td><input type="text"></td></tr>
+      <tr><td>8 Modular Square Metal Box</td><td><input type="text"></td></tr>
+      <tr><td>12 Modular Metal Box</td><td><input type="text"></td></tr>
+      <tr><td>16 Modular Metal Box</td><td><input type="text"></td></tr>
+      <tr><td>18 Modular Metal Box</td><td><input type="text"></td></tr>
+      <tr><td>Metal Box Packing Tape</td><td><input type="text"></td></tr>
+
+    </table>
+  </details>
+
+  <details class="material-category">
+    <summary> Wire And Board Material <span>+</span></summary>
+    <table class="materialTable">
+      <tr><th>Material</th><th>Qty</th></tr>
+      <tr><td>2 Modular Plet</td><td><input type="text"></td></tr>
+      <tr><td>3 Modular Plet</td><td><input type="text"></td></tr> 
+      <tr><td>4 Modular Plet</td><td><input type="text"></td></tr>
+      <tr><td>6 Modular Plet</td><td><input type="text"></td></tr>
+      <tr><td>6 Modular Plet</td><td><input type="text"></td></tr>
+      <tr><td>8 Modular Plet</td><td><input type="text"></td></tr>
+      <tr><td>8 Modular Plet</td><td><input type="text"></td></tr>
+      <tr><td>12 Modular Plet</td><td><input type="text"></td></tr>
+      <tr><td>16 Modular Plet</td><td><input type="text"></td></tr>
+      <tr><td>18 Modular Plet</td><td><input type="text"></td></tr>
+      <tr><td>Switch 6A</td><td><input type="text"></td></tr>
+      <tr><td>Switch 16A</td><td><input type="text"></td></tr>
+      <tr><td>Socket 6A</td><td><input type="text"></td></tr>
+      <tr><td>Socket 16A</td><td><input type="text"></td></tr>
+      <tr><td>2Way Switch</td><td><input type="text"></td></tr>
+      <tr><td>20Amp AC Switch</td><td><input type="text"></td></tr>
+      <tr><td>20Amp AC Socket</td><td><input type="text"></td></tr>
+      <tr><td>Fan Regulator 1Modular</td><td><input type="text"></td></tr>
+      <tr><td>Fan Regulator 2Modular</td><td><input type="text"></td></tr>
+      <tr><td>Ceiling Rose</td><td><input type="text"></td></tr>
+      <tr><td>Indicator</td><td><input type="text"></td></tr>
+      <tr><td>Light Holder</td><td><input type="text"></td></tr>
+      <tr><td>Foot Lamp</td><td><input type="text"></td></tr>
+      <tr><td>Round Plate</td><td><input type="text"></td></tr>
+      <tr><td>1mm Wire </td><td><input type="text"></td></tr>
+      <tr><td>1.5mm Wire </td><td><input type="text"></td></tr>
+      <tr><td>2.5mm Wire </td><td><input type="text"></td></tr>
+      <tr><td>4mm Wire </td><td><input type="text"></td></tr>
+      <tr><td>6mm Wire </td><td><input type="text"></td></tr>
+      <tr><td>MCB 10 Amp</td><td><input type="text"></td></tr>
+      <tr><td>MCB 10 Amp 2pole</td><td><input type="text"></td></tr>
+      <tr><td>MCB 16 Amp</td><td><input type="text"></td></tr>
+      <tr><td>MCB 16 Amp 2pole</td><td><input type="text"></td></tr>
+      <tr><td>MCB 32 Amp</td><td><input type="text"></td></tr>
+      <tr><td>MCB 32 Amp 2pole</td><td><input type="text"></td></tr>
+      <tr><td>RCCB</td><td><input type="text"></td></tr>
+      <tr><td>MCB Metal Box+Plate 4Modular</td><td><input type="text"></td></tr>
+      <tr><td>MCB Metal Box+Plate 6Modular</td><td><input type="text"></td></tr>
+      <tr><td>MCB Metal Box+Plate 8Modular</td><td><input type="text"></td></tr>
+      <tr><td>MCB Metal Box+Plate 12Modular</td><td><input type="text"></td></tr>
+     <tr><td>16mm plexible Pipe</td><td><input type="text"></td></tr>
+     <tr><td>20mm Plexible Pipe</td><td><input type="text"></td></tr>
+      <tr><td>Pvc Grip</td><td><input type="text"></td></tr>
+      <tr><td>25/6 Black Screw </td><td><input type="text"></td></tr>
+      <tr><td>38/6 Black Screw </td><td><input type="text"></td></tr>
+      <tr><td>50/6 Black Screw </td><td><input type="text"></td></tr>
+      <tr><td>60/6 Black Screw 2 Inch</td><td><input type="text"></td></tr>
+      <tr><td>Insulation Tape</td><td><input type="text"></td></tr>
+      
+      
+    </table>
+  </details>
+
+</div>
+
+
+<!-- Add Material Button -->
+<div class="add-material-box">
+  <button type="button" onclick="addMaterial()"> Add Material</button>
+</div>
+
+<script>
+function addMaterial() {
+  const name = prompt("Material ka naam likhiye:");
+  if (name === null) return;
+
+  const material = name.trim();
+  if (material === "") {
+    alert("Material ka naam khali nahi ho sakta.");
+    return;
+  }
+
+  const qty = prompt("Quantity likhiye:", "1");
+  if (qty === null) return;
+
+  const category = prompt(
+    "Category number likhiye:\\n1 = Chat Fitting Material\\n2 = Room Jari Pipe Material\\n3 = Wire And Board Material",
+    "1"
+  );
+  if (category === null) return;
+
+  const tables = document.querySelectorAll(".materialTable");
+  const index = parseInt(category, 10) - 1;
+
+  if (!tables[index]) {
+    alert("Sahi category number daliye (1, 2 ya 3).");
+    return;
+  }
+
+  const row = tables[index].insertRow(-1);
+  row.innerHTML = `
+    <td>${escapeHtml(material)}</td>
+    <td><input type="text" value="${escapeHtml(qty)}"></td>
+  `;
+}
+</script>
+
+
+
+<br>
+
+
+
+<button onclick="printBill()"> Print Bill</button>
+<div id="billOutput"></div>
+<div class="footer">
+
+<p><b>Note:</b> Upar diya gaya saman lekar aaye.</p>
+
+<br>
+
+<p>
+____________________
+<br>
+Dhiru Pawara
+<br>
+Kundane, Post Warkhedi, Tal. & Dist. Dhule - 424301
+</p>
+
+</div>
+
+<script>
+function printBill(){
+
+let rows=document.querySelectorAll(".materialTable tr");
+let items="";
+
+for(let i=0;i<rows.length;i++){
+ if(!rows[i].cells || rows[i].cells.length<2) continue;
+ const input=rows[i].cells[1].querySelector("input");
+ if(!input) continue;
+ let material=rows[i].cells[0].innerText;
+ let qty=input.value;
+ if(qty.trim()!=""){ items += `<tr><td>${escapeHtml(material)}</td><td>${escapeHtml(qty)}</td></tr>`; }
+}
+let customer=document.getElementById("customer").value;
+let mobile=document.getElementById("mobile").value;
+let date=document.getElementById("date").value;
+let win=window.open("","_blank");
+win.document.write(`
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tejas Electricals Bill</title>
+<style>
+
+       body{margin:0;padding:20px;font-family:Arial,sans-serif;background:#F5F5F5;color:#111}.bill{width:100%;max-width:800px;margin:auto;border:2px solid #1e40af;padding:22px;box-sizing:border-box}.header{text-align:center;border-bottom:2px solid #1e40af;padding-bottom:12px;margin-bottom:15px}.bill-logo{width:100px;height:auto;display:block;margin:0 auto 10px}.header h1{margin:0;color:#1e40af;font-size:28px}.info{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;margin-bottom:15px}.info p{margin:3px 0}table{width:100%;border-collapse:collapse}th,td{border:1px solid #333;padding:9px}th{background:#1e40af;color:#fff}td:first-child{text-align:left}td:last-child,th:last-child{text-align:center;width:120px}.actions{text-align:center;margin-top:20px}.actions button{padding:10px 18px;margin:5px;border:0;border-radius:5px;background:#f59e0b;color:#fff;cursor:pointer;font-size:15px}.signature{margin-top:30px;text-align:right}@media print{body{padding:0}.actions{display:none}}
+
+</style>
+</head>
+<body>
+<div class="bill" id="bill">
+<div class="header">
+<img src="logo.png" class="bill-logo">
+<h1>
+  <span style="color:#1e40af;">TEJAS</span>
+  <span style="color:#f59e0b;"> ELECTRICALS</span>
+</h1>
+
+<br>
+<h>  <span style="color:red;"> Material List</span> </h>
+
+</br>
+
+</div>
+<div class="info">
+<p>
+<b>Customer Name:</b> ${escapeHtml(customer)}
+</p>
+<p><b>Mobile Number:</b> ${escapeHtml(mobile)}</p><p><b>Date:</b> ${escapeHtml(date)}</p></div><table><tr><th>Material</th><th>Qty</th></tr>${items||'<tr><td colspan="2">No material selected</td></tr>'}.</table><div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:30px;">
+
+
+
+<div style="text-align:left;font-size:16px;line-height:1.6;">
+<img src="stamp.png" style="width:150px;height:150px;object-fit:contain;">
+<br>
+ At Kundane, Post Warkhedi,<br>
+Tal. &amp; Dist. Dhule - 424301
+</div>
+<div style="text-align:right;">
+<p>____________________</p>
+<p><b>Dhiru Pawara</b><br>☎️8208829028</p>
+</div>
+</div></div><div class="actions"><button onclick="savePDF()">Save PDF</button><button onclick="saveImage()">Save Image</button></div><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script><script>function fileName(){let n=${JSON.stringify(customer)}.trim().replace(/[^a-zA-Z0-9_-]/g,"_");return(n||"Customer")+"_Tejas_Electricals_Bill"}async function savePDF(){const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff"});const {jsPDF}=window.jspdf;const pdf=new jsPDF("p","mm","a4");const w=190;const h=c.height*w/c.width;pdf.addImage(c.toDataURL("image/jpeg",.95),"JPEG",10,10,w,h);pdf.save(fileName()+".pdf")}async function saveImage(){const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff"});const a=document.createElement("a");a.download=fileName()+".png";a.href=c.toDataURL("image/png");a.click()}</\script></body></html>`);
+win.document.close();
+}
+function escapeHtml(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#039;");}
+
+
+
+</script>
+</body>
+</html>
+";
     document.body.appendChild(a);
     try{a.click()}catch(e){}
     setTimeout(function(){
