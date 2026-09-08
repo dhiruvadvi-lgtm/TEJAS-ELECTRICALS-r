@@ -272,27 +272,7 @@ Tal. &amp; Dist. Dhule - 424301
 <p>____________________</p>
 <p><b>Dhiru Pawara</b><br>☎️8208829028</p>
 </div>
-</div></div><div class="actions"><button onclick="savePDF()">Save PDF</button><button onclick="saveImage()">Save Image</button></div><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script><script>function fileName(){let n=${JSON.stringify(customer)}.trim().replace(/[^a-zA-Z0-9_-]/g,"_");return(n||"Customer")+"_Tejas_Electricals_Bill"}async function savePDF(){const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff"});const {jsPDF}=window.jspdf;const pdf=new jsPDF("p","mm","a4");const w=190;const h=c.height*w/c.width;pdf.addImage(c.toDataURL("image/jpeg",.95),"JPEG",10,10,w,h);pdf.save(fileName()+".pdf")}async function saveImage(){
-  const c = await html2canvas(document.getElementById("bill"), {
-    scale: 2,
-    backgroundColor: "#fff"
-  });
-
-  const blob = await new Promise(resolve =>
-    c.toBlob(resolve, "image/png")
-  );
-
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-
-  a.href = url;
-  a.download = fileName() + ".png";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}{const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff"});const a=document.createElement("a");a.download=fileName()+".png";a.href=c.toDataURL("image/png");a.click()}</\script></body></html>`);
+</div></div><div class="actions"><button onclick="savePDF()">Save PDF</button><button onclick="saveImage()">Save Image</button></div><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script><script>function fileName(){let n=${JSON.stringify(customer)}.trim().replace(/[^a-zA-Z0-9_-]/g,"_");return(n||"Customer")+"_Tejas_Electricals_Bill"}async function savePDF(){const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff"});const {jsPDF}=window.jspdf;const pdf=new jsPDF("p","mm","a4");const w=190;const h=c.height*w/c.width;pdf.addImage(c.toDataURL("image/jpeg",.95),"JPEG",10,10,w,h);pdf.save(fileName()+".pdf")}async function saveImage(){const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff"});const a=document.createElement("a");a.download=fileName()+".png";a.href=c.toDataURL("image/png");a.click()}</\script></body></html>`);
 win.document.close();
 }
 function escapeHtml(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#039;");}
