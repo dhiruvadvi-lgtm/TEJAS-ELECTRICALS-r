@@ -148,44 +148,13 @@
   <button type="button" onclick="addMaterial()"> Add Material</button>
 </div>
 
-
-
-
-
-<br>
-
-
-
-
-<button type="button" onclick="printBill()">🖨️ Print Bill</button>
-<div id="billOutput"></div>
-
-<div class="footer">
-  <p><b>Note:</b> Upar diya gaya saman lekar aaye.</p>
-  <br>
-  <p>
-    ____________________<br>
-    Dhiru Pawara<br>
-    📍 Kundane, Post Warkhedi, Tal. &amp; Dist. Dhule - 424301
-  </p>
-</div>
-
 <script>
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
 function addMaterial() {
   const name = prompt("Material ka naam likhiye:");
   if (name === null) return;
 
   const material = name.trim();
-  if (!material) {
+  if (material === "") {
     alert("Material ka naam khali nahi ho sakta.");
     return;
   }
@@ -194,7 +163,7 @@ function addMaterial() {
   if (qty === null) return;
 
   const category = prompt(
-    "Category number likhiye:\\n1 = Chhat Fitting Material\\n2 = Room Jari Pipe Material\\n3 = Wire And Board Material",
+    "Category number likhiye:\\n1 = Chat Fitting Material\\n2 = Room Jari Pipe Material\\n3 = Wire And Board Material",
     "1"
   );
   if (category === null) return;
@@ -208,228 +177,147 @@ function addMaterial() {
   }
 
   const row = tables[index].insertRow(-1);
-  row.innerHTML =
-    "<td>" + escapeHtml(material) + "</td>" +
-    '<td><input type="text" value="' + escapeHtml(qty) + '"></td>';
-}
-
-function getBillData() {
-  const rows = document.querySelectorAll(".materialTable tr");
-  const items = [];
-
-  rows.forEach(function(row) {
-    if (!row.cells || row.cells.length < 2) return;
-
-    const input = row.cells[1].querySelector("input");
-    if (!input) return;
-
-    const material = row.cells[0].innerText.trim();
-    const qty = input.value.trim();
-
-    if (qty !== "") {
-      items.push({ material: material, qty: qty });
-    }
-  });
-
-  return {
-    customer: document.getElementById("customer").value.trim(),
-    mobile: document.getElementById("mobile").value.trim(),
-    date: document.getElementById("date").value,
-    items: items
-  };
-}
-
-function makeFileName(customer) {
-  const name = customer.replace(/[^a-zA-Z0-9_-]/g, "_");
-  return (name || "Customer") + "_Tejas_Electricals_Bill";
-}
-
-function printBill() {
-  const data = getBillData();
-
-  // Same page print: this works more reliably on mobile browsers.
-  const oldTitle = document.title;
-  document.title = makeFileName(data.customer);
-
-  const original = document.body.innerHTML;
-
-  let rowsHtml = "";
-  data.items.forEach(function(item) {
-    rowsHtml += "<tr><td>" + escapeHtml(item.material) +
-                "</td><td>" + escapeHtml(item.qty) + "</td></tr>";
-  });
-
-  if (!rowsHtml) {
-    rowsHtml = '<tr><td colspan="2">No material selected</td></tr>';
-  }
-
-  document.body.innerHTML =
-    '<div class="printBill">' +
-      '<div class="printHeader">' +
-        '<img src="logo.png" class="printLogo" onerror="this.style.display=\'none\'">' +
-        '<h1><span style="color:#1e40af;">TEJAS</span>' +
-        '<span style="color:#f59e0b;"> ELECTRICALS</span></h1>' +
-        '<h3 style="color:red;">Material List</h3>' +
-      '</div>' +
-      '<div class="printInfo">' +
-        '<p><b>Customer Name:</b> ' + escapeHtml(data.customer) + '</p>' +
-        '<p><b>Mobile Number:</b> ' + escapeHtml(data.mobile) + '</p>' +
-        '<p><b>Date:</b> ' + escapeHtml(data.date) + '</p>' +
-      '</div>' +
-      '<table>' +
-        '<tr><th>Material</th><th>Qty</th></tr>' +
-        rowsHtml +
-      '</table>' +
-      '<div class="printBottom">' +
-        '<div>' +
-          '<img src="stamp.png" class="printStamp" onerror="this.style.display=\'none\'">' +
-          '<br>At Kundane, Post Warkhedi,<br>' +
-          'Tal. &amp; Dist. Dhule - 424301' +
-        '</div>' +
-        '<div style="text-align:right;">' +
-          '<p>____________________</p>' +
-          '<p><b>Dhiru Pawara</b><br>☎ 8208829028</p>' +
-        '</div>' +
-      '</div>' +
-    '</div>';
-
-  const style = document.createElement("style");
-  style.id = "temporaryPrintStyle";
-  style.textContent =
-    "body{background:#fff!important;margin:0!important;padding:0!important;font-family:Arial,sans-serif!important}" +
-    ".printBill{width:100%;max-width:800px;margin:auto;background:#fff;padding:20px;box-sizing:border-box;border:2px solid #1e40af}" +
-    ".printHeader{text-align:center;border-bottom:2px solid #1e40af;padding-bottom:12px;margin-bottom:15px}" +
-    ".printLogo{width:100px;display:block;margin:0 auto 10px}" +
-    ".printHeader h1{margin:0;font-size:28px}" +
-    ".printInfo{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;margin-bottom:15px}" +
-    ".printInfo p{margin:3px 0}" +
-    ".printBill table{width:100%;border-collapse:collapse}" +
-    ".printBill th,.printBill td{border:1px solid #333;padding:9px}" +
-    ".printBill th{background:#1e40af!important;color:#fff!important}" +
-    ".printBill td:first-child{text-align:left}" +
-    ".printBill td:last-child,.printBill th:last-child{text-align:center;width:120px}" +
-    ".printBottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:30px;gap:15px}" +
-    ".printStamp{width:130px;height:130px;object-fit:contain}" +
-    "@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.printBill{border:2px solid #1e40af}}" +
-    "@media(max-width:600px){.printBill{padding:12px}.printInfo{grid-template-columns:1fr}.printBill th,.printBill td{padding:7px 5px;font-size:13px}}";
-
-  document.head.appendChild(style);
-
-  // Wait briefly so logo/stamp can render before the print dialog.
-  setTimeout(function() {
-    window.print();
-
-    // Restore the app after printing.
-    setTimeout(function() {
-      document.body.innerHTML = original;
-      const oldStyle = document.getElementById("temporaryPrintStyle");
-      if (oldStyle) oldStyle.remove();
-      document.title = oldTitle;
-    }, 500);
-  }, 400);
-}
-
-function savePDF() {
-  // Mobile browsers can print to PDF without an external PDF library.
-  printBill();
-}
-
-async function saveImage() {
-  try {
-    if (typeof html2canvas === "undefined") {
-      alert("Save Image ke liye Internet ON karke page reload kare.");
-      return;
-    }
-
-    const data = getBillData();
-    const originalTitle = document.title;
-    const original = document.body.innerHTML;
-
-    let rowsHtml = "";
-    data.items.forEach(function(item) {
-      rowsHtml += "<tr><td>" + escapeHtml(item.material) +
-                  "</td><td>" + escapeHtml(item.qty) + "</td></tr>";
-    });
-    if (!rowsHtml) {
-      rowsHtml = '<tr><td colspan="2">No material selected</td></tr>';
-    }
-
-    document.body.innerHTML =
-      '<div id="imageBill" class="printBill">' +
-        '<div class="printHeader">' +
-          '<img src="logo.png" class="printLogo" onerror="this.style.display=\'none\'">' +
-          '<h1><span style="color:#1e40af;">TEJAS</span><span style="color:#f59e0b;"> ELECTRICALS</span></h1>' +
-          '<h3 style="color:red;">Material List</h3>' +
-        '</div>' +
-        '<div class="printInfo">' +
-          '<p><b>Customer Name:</b> ' + escapeHtml(data.customer) + '</p>' +
-          '<p><b>Mobile Number:</b> ' + escapeHtml(data.mobile) + '</p>' +
-          '<p><b>Date:</b> ' + escapeHtml(data.date) + '</p>' +
-        '</div>' +
-        '<table><tr><th>Material</th><th>Qty</th></tr>' + rowsHtml + '</table>' +
-        '<div class="printBottom">' +
-          '<div><img src="stamp.png" class="printStamp" onerror="this.style.display=\'none\'">' +
-          '<br>At Kundane, Post Warkhedi,<br>Tal. &amp; Dist. Dhule - 424301</div>' +
-          '<div style="text-align:right;"><p>____________________</p>' +
-          '<p><b>Dhiru Pawara</b><br>☎ 8208829028</p></div>' +
-        '</div>' +
-      '</div>';
-
-    const style = document.createElement("style");
-    style.textContent =
-      ".printBill{width:100%;max-width:800px;margin:auto;background:#fff;padding:20px;box-sizing:border-box;border:2px solid #1e40af;font-family:Arial,sans-serif}" +
-      ".printHeader{text-align:center;border-bottom:2px solid #1e40af;padding-bottom:12px;margin-bottom:15px}" +
-      ".printLogo{width:100px;display:block;margin:0 auto 10px}" +
-      ".printHeader h1{margin:0;font-size:28px}" +
-      ".printInfo{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;margin-bottom:15px}" +
-      ".printInfo p{margin:3px 0}" +
-      ".printBill table{width:100%;border-collapse:collapse}" +
-      ".printBill th,.printBill td{border:1px solid #333;padding:9px}" +
-      ".printBill th{background:#1e40af;color:#fff}" +
-      ".printBill td:first-child{text-align:left}" +
-      ".printBill td:last-child,.printBill th:last-child{text-align:center;width:120px}" +
-      ".printBottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:30px;gap:15px}" +
-      ".printStamp{width:130px;height:130px;object-fit:contain}";
-    document.head.appendChild(style);
-
-    await new Promise(function(resolve) { setTimeout(resolve, 300); });
-
-    const canvas = await html2canvas(document.getElementById("imageBill"), {
-      scale: 2,
-      backgroundColor: "#ffffff",
-      useCORS: true,
-      allowTaint: false
-    });
-
-    canvas.toBlob(function(blob) {
-      if (!blob) {
-        alert("Image save nahi ho paayi.");
-      } else {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = makeFileName(data.customer) + ".png";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
-      }
-
-      document.body.innerHTML = original;
-      style.remove();
-      document.title = originalTitle;
-    }, "image/png");
-
-  } catch (error) {
-    console.error(error);
-    alert("Save Image nahi ho pa raha. Internet ON karke dobara try kare.");
-    location.reload();
-  }
+  row.innerHTML = `
+    <td>${escapeHtml(material)}</td>
+    <td><input type="text" value="${escapeHtml(qty)}"></td>
+  `;
 }
 </script>
 
-<!-- Save Image ke liye library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+
+<br>
+
+
+
+<button onclick="printBill()"> Print Bill</button>
+<div id="billOutput"></div>
+<div class="footer">
+
+<p><b>Note:</b> Upar diya gaya saman lekar aaye.</p>
+
+<br>
+
+<p>
+____________________
+<br>
+Dhiru Pawara
+<br>
+Kundane, Post Warkhedi, Tal. & Dist. Dhule - 424301
+</p>
+
+</div>
+
+<script>
+function printBill(){
+
+let rows=document.querySelectorAll(".materialTable tr");
+let items="";
+
+for(let i=0;i<rows.length;i++){
+ if(!rows[i].cells || rows[i].cells.length<2) continue;
+ const input=rows[i].cells[1].querySelector("input");
+ if(!input) continue;
+ let material=rows[i].cells[0].innerText;
+ let qty=input.value;
+ if(qty.trim()!=""){ items += `<tr><td>${escapeHtml(material)}</td><td>${escapeHtml(qty)}</td></tr>`; }
+}
+let customer=document.getElementById("customer").value;
+let mobile=document.getElementById("mobile").value;
+let date=document.getElementById("date").value;
+let win=window.open("","_blank");
+win.document.write(`
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tejas Electricals Bill</title>
+<style>
+
+       body{margin:0;padding:20px;font-family:Arial,sans-serif;background:#F5F5F5;color:#111}.bill{width:100%;max-width:800px;margin:auto;border:2px solid #1e40af;padding:22px;box-sizing:border-box}.header{text-align:center;border-bottom:2px solid #1e40af;padding-bottom:12px;margin-bottom:15px}.bill-logo{width:100px;height:auto;display:block;margin:0 auto 10px}.header h1{margin:0;color:#1e40af;font-size:28px}.info{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;margin-bottom:15px}.info p{margin:3px 0}table{width:100%;border-collapse:collapse}th,td{border:1px solid #333;padding:9px}th{background:#1e40af;color:#fff}td:first-child{text-align:left}td:last-child,th:last-child{text-align:center;width:120px}.actions{text-align:center;margin-top:20px}.actions button{padding:10px 18px;margin:5px;border:0;border-radius:5px;background:#f59e0b;color:#fff;cursor:pointer;font-size:15px}.signature{margin-top:30px;text-align:right}@media print{body{padding:0}.actions{display:none}}
+
+</style>
+</head>
+<body>
+<div class="bill" id="bill">
+<div class="header">
+<img src="logo.png" class="bill-logo">
+<h1>
+  <span style="color:#1e40af;">TEJAS</span>
+  <span style="color:#f59e0b;"> ELECTRICALS</span>
+</h1>
+
+<br>
+<h>  <span style="color:red;"> Material List</span> </h>
+
+</br>
+
+</div>
+<div class="info">
+<p>
+<b>Customer Name:</b> ${escapeHtml(customer)}
+</p>
+<p><b>Mobile Number:</b> ${escapeHtml(mobile)}</p><p><b>Date:</b> ${escapeHtml(date)}</p></div><table><tr><th>Material</th><th>Qty</th></tr>${items||'<tr><td colspan="2">No material selected</td></tr>'}.</table><div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:30px;">
+
+
+
+<div style="text-align:left;font-size:16px;line-height:1.6;">
+<img src="stamp.png" style="width:150px;height:150px;object-fit:contain;">
+<br>
+ At Kundane, Post Warkhedi,<br>
+Tal. &amp; Dist. Dhule - 424301
+</div>
+<div style="text-align:right;">
+<p>____________________</p>
+<p><b>Dhiru Pawara</b><br>☎️8208829028</p>
+</div>
+</div></div><div class="actions"><button onclick="savePDF()">Save PDF</button><button onclick="saveImage()">Save Image</button></div><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"><\/script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script><script>function fileName(){let n=${JSON.stringify(customer)}.trim().replace(/[^a-zA-Z0-9_-]/g,"_");return(n||"Customer")+"_Tejas_Electricals_Bill"}async function shareOrDownload(blob,name,mime){
+  try{
+    const file=new File([blob],name,{type:mime});
+    if(navigator.share && (!navigator.canShare || navigator.canShare({files:[file]}))){
+      await navigator.share({files:[file],title:name});
+      return;
+    }
+  }catch(e){
+    if(e && e.name==="AbortError") return;
+  }
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=name;
+  a.target="_blank";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+async function savePDF(){
+  try{
+    const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff",useCORS:true});
+    const {jsPDF}=window.jspdf;
+    const pdf=new jsPDF("p","mm","a4");
+    const w=190;
+    const h=c.height*w/c.width;
+    pdf.addImage(c.toDataURL("image/jpeg",.95),"JPEG",10,10,w,h);
+    const blob=pdf.output("blob");
+    await shareOrDownload(blob,fileName()+".pdf","application/pdf");
+  }catch(e){alert("PDF save nahi ho paya. Internet check karke dobara try kare.");}
+}
+async function saveImage(){
+  try{
+    const c=await html2canvas(document.getElementById("bill"),{scale:2,backgroundColor:"#fff",useCORS:true});
+    const res=await fetch(c.toDataURL("image/png"));
+    const blob=await res.blob();
+    await shareOrDownload(blob,fileName()+".png","image/png");
+  }catch(e){alert("Image save nahi ho payi. Dobara try kare.");}
+}</\script></body></html>`);
+win.document.close();
+}
+function escapeHtml(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#039;");}
+
+
+
+</script>
 </body>
 </html>
